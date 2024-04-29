@@ -39,7 +39,7 @@ public class GameWindow extends JFrame
     public GameWindow() {
  
         setTitle ("Tiled Bat and Ball Game: Ordinary Windowed Mode");
-        setSize (900, 800); // 700 675
+        setSize (700, 675);
 
         // create user interface objects
 
@@ -65,11 +65,11 @@ public class GameWindow extends JFrame
 
         // create buttons
 
-        startB = new JButton ("Start Game");
-        pauseB = new JButton ("Pause Game");
-        endB = new JButton ("End Game");
+            startB = new JButton ("Start Game");
+            pauseB = new JButton ("Pause Game");
+            endB = new JButton ("End Game");
         startNewB = new JButton ("Start New Game");
-        focusB = new JButton ("Show Animation");
+            focusB = new JButton ("Show Animation");
         exitB = new JButton ("Exit");
 
 
@@ -93,7 +93,7 @@ public class GameWindow extends JFrame
         // create the gamePanel for game entities
 
         gamePanel = new GamePanel();
-        gamePanel.setPreferredSize(new Dimension(800, 550)); // 600 ,500
+            gamePanel.setPreferredSize(new Dimension(600, 500));
 
         // create infoPanel
 
@@ -218,9 +218,6 @@ public class GameWindow extends JFrame
         else
         if (keyCode == KeyEvent.VK_SPACE) {
             gamePanel.jump();
-        }
-        if(keyCode == KeyEvent.VK_A){
-        //    gamePanel.playerAttack();
         }
     }
 

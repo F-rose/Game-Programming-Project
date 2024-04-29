@@ -33,28 +33,20 @@ public class GamePanel extends JPanel
     private TileMapManager tileManager;
     private TileMap    tileMap;
 
-    private int health;
-    private Health healthBar;
-    private int power;
-    private Power powerBar;
-
     private boolean levelChange;
     private int level;
     private boolean gameOver;
 
     public GamePanel () {
         
-        isRunning = false;
+                isRunning = false;
         isPaused = false;
         isAnimShown = false;
         isAnimPaused = false;
         
         soundManager = SoundManager.getInstance();
 
-        power = 1;
-        health = 10;
-
-        image = new BufferedImage (800, 700, BufferedImage.TYPE_INT_RGB);
+        image = new BufferedImage (600, 500, BufferedImage.TYPE_INT_RGB);
 
         level = 1;
         levelChange = false;
@@ -64,9 +56,6 @@ public class GamePanel extends JPanel
     public void createGameEntities() {
         animation = new BirdAnimation();
         imageEffect = new ImageEffect (this);
-        healthBar = new Health(this);
-        powerBar = new Power(this);
-      
     }
 
 
@@ -132,8 +121,6 @@ public class GamePanel extends JPanel
 
         tileMap.draw (imageContext);
 
-
-
         if (isAnimShown)
             animation.draw(imageContext);        // draw the animation
 
@@ -142,13 +129,11 @@ public class GamePanel extends JPanel
         if (gameOver) {
             Color darken = new Color (0, 0, 0, 125);
             imageContext.setColor (darken);
-            imageContext.fill (new Rectangle2D.Double (0, 0, 800, 700));
+            imageContext.fill (new Rectangle2D.Double (0, 0, 600, 500));
         }
 
         Graphics2D g2 = (Graphics2D) getGraphics();    // get the graphics context for the panel
-        g2.drawImage(image, 0, 0, 800, 700, null);    // draw the image on the graphics context
-        g2.drawImage(healthBar.showHealth(health), 10, 10, 80, 20, null);
-        g2.drawImage(powerBar.showPower(power), 100, 10, 80, 20, null);
+        g2.drawImage(image, 0, 0, 600, 500, null);    // draw the image on the graphics context
 
         imageContext.dispose();
     }
@@ -251,17 +236,20 @@ public class GamePanel extends JPanel
     public void moveRight() {
         if (!gameOver)
             tileMap.moveRight();
+            tileMap.right();
     }
     
     public void moveDown() {
         if (!gameOver)
             tileMap.moveDown();
+            tileMap.left();
     }
 
 
     public void jump() {
         if (!gameOver)
             tileMap.jump();
+            tileMap.jump2();
     }
 
     
@@ -281,19 +269,4 @@ public class GamePanel extends JPanel
         levelChange = true;
     }
 
-    public void calculateHealth(){
-        //if(attacker2.attackCollideWithPlayer())
-            health = health - 1;
-    }
-
-    public void calculatePower(){
-        //if(lanterns[0].collidesWithPlayer())
-            power = power + 1;
-        //if(lanterns[1].collidesWithPlayer())
-            power = power + 1;
-    }
-    
-    // public void playerAttack(){
-        
-    // }
 }
